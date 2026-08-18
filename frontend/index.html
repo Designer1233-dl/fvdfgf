@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Халява от Илюшки</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="admin-nav" class="admin-nav hidden">
+    <button id="admin-menu-button" class="admin-menu-button" type="button" aria-label="Открыть меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div id="admin-menu-panel" class="admin-menu-panel hidden">
+      <button id="admin-menu-toggle" class="admin-menu-link" type="button">Перейти в админ раздел</button>
+    </div>
+  </div>
+
+  <div id="profile-nav" class="profile-nav hidden">
+    <button id="profile-button" class="profile-button" type="button" aria-label="Открыть профиль">
+      <span id="profile-avatar" class="profile-avatar">IG</span>
+      <span class="profile-balance-box">
+        <small>Баланс</small>
+        <strong id="profile-balance-chip">0 USDT</strong>
+      </span>
+    </button>
+  </div>
+
+  <div class="bubble-field" aria-hidden="true">
+    <span class="bubble b1"></span>
+    <span class="bubble b2"></span>
+    <span class="bubble b3"></span>
+    <span class="bubble b4"></span>
+    <span class="bubble b5"></span>
+  </div>
+
+  <main class="shell">
+    <section id="hero-card" class="hero glass">
+      <div>
+        <span class="eyebrow">Халява от Илюшки</span>
+        <h1 id="landing-title" class="hidden">Халява от Илюшки</h1>
+        <p id="landing-subtitle"></p>
+      </div>
+    </section>
+
+    <section id="admin-login-card" class="glass admin-login-card">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow small">Админ-панель</span>
+          <h2>Вход по паролю</h2>
+        </div>
+      </div>
+      <form id="admin-login-form" class="stack">
+        <label>
+          <span>Пароль</span>
+          <input id="admin-password" name="password" type="password" placeholder="Введите пароль" required />
+        </label>
+        <button class="primary" type="submit">Открыть админку</button>
+      </form>
+      <div id="admin-login-message" class="message hidden"></div>
+    </section>
+
+    <section id="admin-panel" class="glass admin-panel hidden">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow small">Админ</span>
+          <h2>Создание розыгрыша</h2>
+        </div>
+        <button id="admin-logout" class="secondary" type="button">Выйти</button>
+      </div>
+
+      <form id="create-raffle-form" class="stack">
+        <label>
+          <span>Название розыгрыша</span>
+          <input name="title" type="text" placeholder="Халява на вечер" required />
+        </label>
+        <label>
+          <span>Что разыгрываем</span>
+          <input name="prizeText" type="text" placeholder="Подарок, бонус, приз" required />
+        </label>
+        <div class="grid-2">
+          <label>
+            <span>Сумма розыгрыша</span>
+            <input name="prizeAmount" type="number" min="0.1" step="0.01" placeholder="10" required />
+          </label>
+          <label>
+            <span>Победителей</span>
+            <input name="winnersCount" type="number" min="1" max="20" value="1" required />
+          </label>
+        </div>
+        <label>
+          <span>Таймер в минутах</span>
+          <input name="timerMinutes" type="number" min="1" value="60" required />
+        </label>
+        <button class="primary" type="submit">Создать розыгрыш</button>
+      </form>
+
+      <section class="balance-admin stack">
+        <div class="section-head compact">
+          <div>
+            <span class="eyebrow small">Баланс</span>
+            <h2>Выдача и снятие по username</h2>
+          </div>
+        </div>
+
+        <div id="balance-lock-card" class="list-card">
+          <p class="admin-hint">Второй пароль нужен только для управления балансами пользователей.</p>
+          <form id="balance-auth-form" class="stack">
+            <label>
+              <span>Второй пароль</span>
+              <input name="password" type="password" placeholder="676767win1" required />
+            </label>
+            <button class="secondary" type="submit">Открыть доступ к балансу</button>
+          </form>
+        </div>
+
+        <form id="balance-adjust-form" class="stack hidden">
+          <div class="grid-2">
+            <label>
+              <span>Username</span>
+              <input name="username" type="text" placeholder="@ilyushka" required />
+            </label>
+            <label>
+              <span>Операция</span>
+              <select name="operation">
+                <option value="credit">Выдать</option>
+                <option value="debit">Снять</option>
+              </select>
+            </label>
+          </div>
+          <div class="grid-2">
+            <label>
+              <span>Сумма</span>
+              <input name="amount" type="number" min="0.1" step="0.01" placeholder="5" required />
+            </label>
+            <label>
+              <span>Комментарий</span>
+              <input name="note" type="text" placeholder="Ручная корректировка" />
+            </label>
+          </div>
+          <button class="primary" type="submit">Применить к балансу</button>
+        </form>
+
+        <div id="balance-admin-message" class="message hidden"></div>
+      </section>
+
+      <div id="payment-card" class="payment-card hidden">
+        <div class="payment-card__glow"></div>
+        <div class="payment-card__content stack">
+          <div>
+            <span class="eyebrow small">Оплата</span>
+            <h3>Сначала оплати розыгрыш</h3>
+            <p id="payment-card-text" class="payment-card-text"></p>
+          </div>
+          <div class="share-actions">
+            <a id="pay-invoice-button" class="primary" target="_blank" rel="noreferrer">Оплатить счет</a>
+            <button id="verify-payment-button" class="secondary" type="button">Проверить оплату</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="share-card" class="share-card hidden">
+        <div class="share-card__glow"></div>
+        <div class="share-card__content">
+          <span class="eyebrow small">Готовая ссылка</span>
+          <h3>Теперь можно кидать в канал</h3>
+          <p id="share-link-text" class="share-link-text"></p>
+          <div class="share-actions">
+            <button id="copy-link-button" class="primary" type="button">Скопировать</button>
+            <a id="open-link-button" class="secondary" target="_blank" rel="noreferrer">Открыть</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="admin-message" class="message hidden"></div>
+
+      <div class="section-head compact">
+        <div>
+          <span class="eyebrow small">Текущие</span>
+          <h2>Розыгрыши</h2>
+        </div>
+      </div>
+      <div id="admin-active-list" class="stack"></div>
+
+      <div class="section-head compact">
+        <div>
+          <span class="eyebrow small">История</span>
+          <h2>Победители</h2>
+        </div>
+      </div>
+      <div id="admin-history-list" class="stack"></div>
+    </section>
+
+    <section id="player-card" class="glass player-card">
+      <div class="player-stage">
+        <span id="player-badge" class="eyebrow small hidden">Розыгрыш</span>
+        <h2 id="raffle-title" class="player-title">Халява от Илюшки</h2>
+        <p id="raffle-subtitle" class="player-subtitle"></p>
+      </div>
+
+      <div id="player-status" class="stats-grid"></div>
+
+      <div id="join-card" class="join-card">
+        <button id="join-button" class="primary" type="button">Вступить в розыгрыш</button>
+      </div>
+
+      <div id="player-message" class="message hidden"></div>
+      <div id="roulette-stack" class="roulette-block"></div>
+    </section>
+  </main>
+
+  <div id="profile-sheet" class="sheet hidden">
+    <div id="sheet-backdrop" class="sheet-backdrop"></div>
+    <div class="sheet-panel glass">
+      <div class="sheet-head">
+        <div>
+          <span class="eyebrow small">Профиль</span>
+          <h2 id="profile-name">Игрок</h2>
+        </div>
+        <button id="close-profile-button" class="icon-button" type="button" aria-label="Закрыть">×</button>
+      </div>
+
+      <div class="profile-summary">
+        <div id="profile-sheet-avatar" class="profile-summary__avatar">IG</div>
+        <div class="profile-summary__meta">
+          <strong id="profile-username-label">Игрок</strong>
+          <span id="profile-balance-label">Баланс 0 USDT</span>
+        </div>
+      </div>
+
+      <form id="withdraw-form" class="stack">
+        <label>
+          <span>Сумма вывода</span>
+          <input id="withdraw-amount" name="amount" type="number" min="0.1" step="0.01" placeholder="5" required />
+        </label>
+        <label>
+          <span>Способ вывода</span>
+          <select id="withdraw-method" name="method">
+            <option value="cryptobot">CryptoBot</option>
+          </select>
+        </label>
+        <button class="primary" type="submit">Вывести</button>
+      </form>
+
+      <div id="profile-message" class="message hidden"></div>
+
+      <div id="withdraw-result-card" class="share-card hidden">
+        <div class="share-card__content">
+          <span class="eyebrow small">Чек готов</span>
+          <h3>Открой и забери выплату</h3>
+          <p id="withdraw-result-text" class="share-link-text"></p>
+          <div class="share-actions">
+            <a id="withdraw-open-button" class="primary" target="_blank" rel="noreferrer">Открыть чек</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
