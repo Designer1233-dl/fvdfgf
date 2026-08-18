@@ -1,0 +1,9 @@
+{
+  "name": "ilyushka-green-raffle",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Green Telegram raffle mini app",
+  "scripts": {
+    "start": "node backend/server.js"
+  }
+}
