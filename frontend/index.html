@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Халява от Илюшки</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+  <body>
+  <div id="admin-nav" class="admin-nav hidden">
+    <button id="admin-menu-button" class="admin-menu-button" type="button" aria-label="Открыть меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div id="admin-menu-panel" class="admin-menu-panel hidden">
+      <button id="admin-menu-toggle" class="admin-menu-link" type="button">Перейти в админ раздел</button>
+    </div>
+  </div>
+
+  <div class="bubble-field" aria-hidden="true">
+    <span class="bubble b1"></span>
+    <span class="bubble b2"></span>
+    <span class="bubble b3"></span>
+    <span class="bubble b4"></span>
+    <span class="bubble b5"></span>
+  </div>
+
+  <main class="shell">
+    <section id="hero-card" class="hero glass">
+      <div>
+        <span class="eyebrow">Халява от Илюшки</span>
+        <h1 id="landing-title" class="hidden">Халява от Илюшки</h1>
+        <p id="landing-subtitle"></p>
+      </div>
+    </section>
+
+    <section id="admin-login-card" class="glass admin-login-card">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Админ-панель</span>
+          <h2>Вход по паролю</h2>
+        </div>
+      </div>
+      <form id="admin-login-form" class="stack">
+        <label>
+          <span>Пароль</span>
+          <input id="admin-password" name="password" type="password" placeholder="Введите пароль" required />
+        </label>
+        <button class="primary" type="submit">Открыть админку</button>
+      </form>
+      <div id="admin-login-message" class="message hidden"></div>
+    </section>
+
+    <section id="admin-panel" class="glass admin-panel hidden">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Админ</span>
+          <h2>Создание розыгрыша</h2>
+        </div>
+        <button id="admin-logout" class="secondary" type="button">Выйти</button>
+      </div>
+
+      <form id="create-raffle-form" class="stack">
+        <label>
+          <span>Название розыгрыша</span>
+          <input name="title" type="text" placeholder="Халява на вечер" required />
+        </label>
+        <label>
+          <span>Что разыгрываем</span>
+          <input name="prizeText" type="text" placeholder="Подарок, бонус, приз" required />
+        </label>
+        <div class="grid-2">
+          <label>
+            <span>Количество победителей</span>
+            <input name="winnersCount" type="number" min="1" max="20" value="1" required />
+          </label>
+          <label>
+            <span>Таймер в минутах</span>
+            <input name="timerMinutes" type="number" min="1" value="60" required />
+          </label>
+        </div>
+        <button class="primary" type="submit">Создать розыгрыш</button>
+      </form>
+
+      <div id="share-card" class="share-card hidden">
+        <div class="share-card__glow"></div>
+        <div class="share-card__content">
+          <span class="eyebrow">Готовая ссылка</span>
+          <h3>Сразу кидай её в канал</h3>
+          <p id="share-link-text" class="share-link-text"></p>
+          <div class="share-actions">
+            <button id="copy-link-button" class="primary" type="button">Скопировать</button>
+            <a id="open-link-button" class="secondary" target="_blank" rel="noreferrer">Открыть</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="admin-message" class="message hidden"></div>
+
+      <div class="section-head compact">
+        <div>
+          <span class="eyebrow">Активные</span>
+          <h2>Текущие розыгрыши</h2>
+        </div>
+      </div>
+      <div id="admin-active-list" class="stack"></div>
+
+      <div class="section-head compact">
+        <div>
+          <span class="eyebrow">История</span>
+          <h2>Победители</h2>
+        </div>
+      </div>
+      <div id="admin-history-list" class="stack"></div>
+    </section>
+
+    <section id="player-card" class="glass player-card">
+      <div class="player-stage">
+        <span id="player-badge" class="eyebrow hidden">Розыгрыш</span>
+        <h2 id="raffle-title" class="player-title">Халява от Илюшки</h2>
+        <p id="raffle-subtitle" class="player-subtitle"> </p>
+      </div>
+
+      <div id="player-status" class="stats-grid"></div>
+
+      <div id="join-card" class="join-card">
+        <button id="join-button" class="primary" type="button">Вступить в розыгрыш</button>
+      </div>
+
+      <div id="player-message" class="message hidden"></div>
+
+      <div class="roulette-block">
+        <div class="roulette-window">
+          <div class="roulette-glow"></div>
+          <div class="roulette-fade left"></div>
+          <div class="roulette-fade right"></div>
+          <div id="roulette-track" class="roulette-track"></div>
+          <div class="roulette-pointer"></div>
+          <div class="roulette-center-ring"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="public-section" class="glass hidden">
+      <div class="section-head compact">
+        <div>
+          <span class="eyebrow">Лента</span>
+          <h2>Открытые розыгрыши</h2>
+        </div>
+      </div>
+      <div id="public-raffles" class="raffle-grid"></div>
+    </section>
+  </main>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
